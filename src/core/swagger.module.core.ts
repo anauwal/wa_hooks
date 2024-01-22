@@ -14,7 +14,7 @@ export class SwaggerModuleCore {
       .setDescription(
         'Whatsapp API with WEBHOOKS by Akbar-Studios<br/>' 
       )
-      .setExternalDoc('WAHA', 'https://waha.devlike.pro/')
+      .setExternalDoc('WAHOOKS', 'https://github.com/anauwal/wa_hooks')
       .setVersion(VERSION.version)
       .addTag('sessions', 'Control WhatsApp sessions')
       .addTag('auth', 'Authentication')
@@ -76,7 +76,7 @@ export class SwaggerModuleCore {
     );
     document = this.configureWebhooks(document, webhooks);
     SwaggerModule.setup('', app, document, {
-      customSiteTitle: 'WAHA - WhatsApp HTTP API',
+      customSiteTitle: 'WAHOOKS',
     });
   }
 

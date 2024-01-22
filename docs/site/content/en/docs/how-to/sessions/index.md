@@ -299,7 +299,7 @@ configure autostart options so when the docker container restarts - it restores 
 ### Session persistent
 
 #### File storage
-If you want to save your session and do not scan QR code everytime when you launch WAHA - connect a local file storage
+If you want to save your session and do not scan QR code everytime when you launch WAHOOKS - connect a local file storage
 to the container. WAHA stores authentication information in the directory and reuses it after restart.
 
 [Attach volume](https://docs.docker.com/storage/volumes/) part to the command:
