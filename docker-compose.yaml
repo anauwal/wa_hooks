@@ -1,8 +1,8 @@
 version: '3'
 services:
-  whatsapp-http-api:
-    image: devlikeapro/whatsapp-http-api
-    container_name: whatsapp-http-api
+  akbar-studios:
+    image: akbar-studios/akbar-studios
+    container_name: akbar-studios
     ports:
       - '3000:3000/tcp'
     environment:
@@ -12,9 +12,9 @@ services:
       - WHATSAPP_DEFAULT_ENGINE=WEBJS
     restart: always
 
-  whatsapp-http-api-plus:
-    image: devlikeapro/whatsapp-http-api-plus
-    container_name: whatsapp-http-api-plus
+  akbar-studios-plus:
+    image: akbar-studios/akbar-studios-plus
+    container_name: akbar-studios-plus
     ports:
       - '3000:3000/tcp'
     volumes:

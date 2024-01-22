@@ -1,0 +1,5 @@
+apt-get install node-js
+rm .yarnrc.yml
+yarn set version stable 
+yarn install 
+yarn build
