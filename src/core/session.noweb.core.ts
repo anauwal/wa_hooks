@@ -152,7 +152,7 @@ export class WhatsappSessionNoWebCore extends WhatsappSession {
     this.log.debug(`Connecting store...`);
     if (!this.store) {
       this.log.debug(`Making a new auth store...`);
-      this.store = makeInMemoryStore({});
+      this.store = makeInMemoryStore({ logger: logger });
     }
     this.log.debug(`Binding store to socket...`);
     this.store.bind(this.sock.ev);
@@ -822,7 +822,7 @@ export class WhatsappSessionNoWebCore extends WhatsappSession {
 }
 
 export class EngineMediaProcessor implements IEngineMediaProcessor<any> {
-  constructor(public session: WhatsappSessionNoWebCore) {}
+  constructor(public session: WhatsappSessionNoWebCore) { }
 
   hasMedia(message: any): boolean {
     const messageType = Object.keys(message.message)[0];

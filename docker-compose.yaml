@@ -1,32 +1,23 @@
-version: '3'
 services:
-  akbar-studios:
-    image: akbar-studios/akbar-studios
-    container_name: akbar-studios
+  whatsapp-hooks:
+    image: wahooks
+    container_name: whatsapp-hooks
     ports:
       - '3000:3000/tcp'
+          # sudo docker run -d -v $(pwd)/.sessions:/app/.sessions --network=host -e "WHATSAPP_HOOK_EVENTS=*" -e WHATSAPP_HOOK_URL=https://database.astronacci.com:4000/public/socket-receiver?key=D1nd4R4f4n14 -e WHATSAPP_DEFAULT_ENGINE=NOWEB -e WHATSAPP_SWAGGER_USERNAME=admin1 -e WHATSAPP_SWAGGER_PASSWORD=adminadmin1 -e WHATSAPP_API_KEY=D1nd4R4f4n14 -e WHATSAPP_RESTART_ALL_SESSIONS=True -p 3000:3000 wahooks
     environment:
-      # Environment variables from https://waha.devlike.pro/docs/how-to/config/
-      - WHATSAPP_HOOK_URL=https://httpbin.org/post
-      - WHATSAPP_HOOK_EVENTS=message
-      - WHATSAPP_DEFAULT_ENGINE=WEBJS
-    restart: always
-
-  akbar-studios-plus:
-    image: akbar-studios/akbar-studios-plus
-    container_name: akbar-studios-plus
-    ports:
-      - '3000:3000/tcp'
-    volumes:
-      - './.sessions:/app/.sessions'
-    environment:
-      # Environment variables from https://waha.devlike.pro/docs/how-to/config/
-      - WHATSAPP_RESTART_ALL_SESSIONS=True
-      - WHATSAPP_HOOK_URL=https://httpbin.org/post
-      - WHATSAPP_HOOK_EVENTS=message
-      - WHATSAPP_DEFAULT_ENGINE=WEBJS
-      - WHATSAPP_API_KEY=321
       - WHATSAPP_SWAGGER_USERNAME=admin
-      - WHATSAPP_SWAGGER_PASSWORD=123
-      - WHATSAPP_API_HOSTNAME=localhost
+      - WHATSAPP_SWAGGER_PASSWORD=admin
+      - WHATSAPP_API_KEY=D1nd4R4f4n14
+      - WHATSAPP_RESTART_ALL_SESSIONS=True
+      - WHATSAPP_HOOK_EVENTS=*
+      - WHATSAPP_DEFAULT_ENGINE=NOWEB
+      - DEBUG=1
+    volumes:
+      - ./.sessions:/app/.sessions
+      
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: always
+    
+
