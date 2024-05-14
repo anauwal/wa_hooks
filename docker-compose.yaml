@@ -10,7 +10,7 @@ services:
       - WHATSAPP_SWAGGER_PASSWORD=admin
       - WHATSAPP_API_KEY=D1nd4R4f4n14
       - WHATSAPP_RESTART_ALL_SESSIONS=True
-      - WHATSAPP_HOOK_EVENTS=session.status,state.change,message,message.ackmessage.revoked
+      - WHATSAPP_HOOK_EVENTS=*
       - WHATSAPP_DEFAULT_ENGINE=NOWEB
       - DEBUG=1
       
