@@ -17,6 +17,7 @@ import { BinaryFile, RemoteFile } from '../structures/files.dto';
 
 export class WhatsappSessionWebJSPlus extends WhatsappSessionWebJSCore {
   protected buildClient() {
+    const path = __dirname;
     const clientOptions: ClientOptions = {
       authStrategy: new LocalAuth({
         clientId: this.name,
@@ -26,6 +27,13 @@ export class WhatsappSessionWebJSPlus extends WhatsappSessionWebJSCore {
         headless: true,
         executablePath: this.getBrowserExecutablePath(),
         args: this.getBrowserArgsForPuppeteer(),
+
+      },
+      webVersion: "2.2409.2",
+      webVersionCache: {
+        type: "remote",
+        remotePath:
+          "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2409.2.html",
       },
     };
     this.addProxyConfig(clientOptions);
