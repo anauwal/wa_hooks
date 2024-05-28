@@ -14,6 +14,7 @@ import { Message as MessageInstance } from 'whatsapp-web.js/src/structures';
 import {
   ChatRequest,
   CheckNumberStatusQuery,
+  EditMessageRequest,
   GetMessageQuery,
   MessageFileRequest,
   MessageImageRequest,
@@ -223,6 +224,32 @@ export class WhatsappSessionWebJSCore extends WhatsappSession {
       request.text,
       options,
     );
+  }
+
+  public deleteMessage(chatId: string, messageId: string) {
+    const message = this.recreateMessage(messageId);
+    return message.delete(true);
+  }
+
+  public editMessage(
+    chatId: string,
+    messageId: string,
+    request: EditMessageRequest,
+  ) {
+    const message = this.recreateMessage(messageId);
+    const options = {
+      // It's fine to sent just ids instead of Contact object
+      mentions: request.mentions as unknown as string[],
+    };
+    return message.edit(request.text, options);
+  }
+
+  private recreateMessage(msgId: string): MessageInstance {
+    const messageId = this.deserializeId(msgId);
+    const data = {
+      id: messageId,
+    };
+    return new MessageInstance(this.whatsapp, data);
   }
 
   reply(request: MessageReplyRequest) {

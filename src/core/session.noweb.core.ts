@@ -23,6 +23,7 @@ import { flipObject, splitAt } from '../helpers';
 import {
   ChatRequest,
   CheckNumberStatusQuery,
+  EditMessageRequest,
   MessageDestination,
   MessageFileRequest,
   MessageImageRequest,
@@ -335,6 +336,22 @@ export class WhatsappSessionNoWebCore extends WhatsappSession {
     const key = parseMessageId(messageId);
     return this.sock.sendMessage(jid, { delete: key });
   }
+
+  public editMessage(
+    chatId: string,
+    messageId: string,
+    request: EditMessageRequest,
+  ) {
+    const jid = toJID(this.ensureSuffix(chatId));
+    const key = parseMessageId(messageId);
+    const message = {
+      text: request.text,
+      mentions: request.mentions?.map(toJID),
+      edit: key,
+    };
+    return this.sock.sendMessage(jid, message);
+  }
+
 
 
   async sendPoll(request: MessagePollRequest) {

@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 import { SessionManager } from '../core/abc/manager.abc';
@@ -6,6 +6,7 @@ import { WhatsappSession } from '../core/abc/session.abc';
 import { parseBool } from '../helpers';
 import { GetChatMessagesQuery } from '../structures/chats.dto';
 import { SessionApiParam, SessionParam } from './helpers';
+import { EditMessageRequest } from 'src/structures/chatting.dto';
 
 @ApiSecurity('api_key')
 @Controller('api/:session/chats')
@@ -39,6 +40,19 @@ class ChatsController {
     @Param('messageId') messageId: string,
   ) {
     return session.deleteMessage(chatId, messageId);
+  }
+
+  @Put(':chatId/messages/:messageId')
+  @SessionApiParam
+
+  @ApiOperation({ summary: 'Edits a message in the chat' })
+  editMessage(
+    @SessionParam session: WhatsappSession,
+    @Param('chatId') chatId: string,
+    @Param('messageId') messageId: string,
+    @Body() body: EditMessageRequest,
+  ) {
+    return session.editMessage(chatId, messageId, body);
   }
 
   @Get(':chatId/messages')

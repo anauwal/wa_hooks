@@ -7,6 +7,7 @@ import { OTPRequest, RequestCodeRequest } from '../../structures/auth.dto';
 import {
   ChatRequest,
   CheckNumberStatusQuery,
+  EditMessageRequest,
   GetMessageQuery,
   MessageContactVcardRequest,
   MessageFileRequest,
@@ -411,6 +412,14 @@ export abstract class WhatsappSession {
   }
 
   public sendVideoStatus(status: VideoStatus) {
+    throw new NotImplementedByEngineError();
+  }
+
+  public editMessage(
+    chatId: string,
+    messageId: string,
+    request: EditMessageRequest,
+  ) {
     throw new NotImplementedByEngineError();
   }
 

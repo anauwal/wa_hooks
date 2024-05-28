@@ -50,7 +50,7 @@ export class GetMessageQuery extends ChatQuery {
   downloadMedia: true;
 }
 
-export class GetPresenceQuery extends ChatQuery {}
+export class GetPresenceQuery extends ChatQuery { }
 
 /**
  * Requests
@@ -204,4 +204,13 @@ export class MessageDestination {
   to: string;
   from: string;
   fromMe: boolean;
+}
+
+
+
+export class EditMessageRequest {
+  text = 'Hello, world!';
+
+  @ApiHideProperty()
+  mentions?: string[];
 }
