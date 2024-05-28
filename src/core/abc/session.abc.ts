@@ -292,6 +292,10 @@ export abstract class WhatsappSession {
     throw new NotImplementedByEngineError();
   }
 
+  public deleteMessage(chatId: string, messageId: string) {
+    throw new NotImplementedByEngineError();
+  }
+
   public getContactAbout(query: ContactQuery) {
     throw new NotImplementedByEngineError();
   }

@@ -330,6 +330,13 @@ export class WhatsappSessionNoWebCore extends WhatsappSession {
     return this.sock.sendMessage(chatId, message);
   }
 
+  public deleteMessage(chatId: string, messageId: string) {
+    const jid = toJID(this.ensureSuffix(chatId));
+    const key = parseMessageId(messageId);
+    return this.sock.sendMessage(jid, { delete: key });
+  }
+
+
   async sendPoll(request: MessagePollRequest) {
     const requestPoll = request.poll;
     const poll = {

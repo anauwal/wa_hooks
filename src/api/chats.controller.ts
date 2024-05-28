@@ -11,7 +11,7 @@ import { SessionApiParam, SessionParam } from './helpers';
 @Controller('api/:session/chats')
 @ApiTags('chats')
 class ChatsController {
-  constructor(private manager: SessionManager) {}
+  constructor(private manager: SessionManager) { }
 
   @Get('')
   @SessionApiParam
@@ -28,6 +28,17 @@ class ChatsController {
     @Param('chatId') chatId: string,
   ) {
     return session.deleteChat(chatId);
+  }
+
+  @Delete(':chatId/messages/:messageId')
+  @SessionApiParam
+  @ApiOperation({ summary: 'Deletes a message from the chat' })
+  deleteMessage(
+    @SessionParam session: WhatsappSession,
+    @Param('chatId') chatId: string,
+    @Param('messageId') messageId: string,
+  ) {
+    return session.deleteMessage(chatId, messageId);
   }
 
   @Get(':chatId/messages')
